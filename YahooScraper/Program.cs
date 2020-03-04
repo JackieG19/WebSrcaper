@@ -24,17 +24,17 @@ namespace YahooScraper
 
             var pass = driver.FindElement(By.Id("login-passwd"));
             pass.SendKeys("throw-away-password");
-            //pass.Submit();
+            pass.SendKeys(Keys.Enter);
             
-            // able to close second tab but pops back up after password submited
-            //var tabs = driver.WindowHandles;
-            //if (tabs.Count > 1)
-            //{
-            //    driver.SwitchTo().Window(tabs[1]);
-            //    driver.Close();
-            //    driver.SwitchTo().Window(tabs[0]);
-            //}
-            //pass.Submit();
-            pass.SendKeys(Keys.Enter); // success!!!
+            driver.Navigate().GoToUrl("https://finance.yahoo.com/portfolios");
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            driver.FindElementByXPath("//*[@id='Nav-0-DesktopNav']/div/div[3]/div/nav/ul/li[2]/a").Click();
+
+            driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
+
+            var watchList = driver.FindElementByXPath("//*[@id='Col1-0-Portfolios-Proxy']/main/table/tbody/tr[1]/td[1]/div[2]/a");
+            watchList.Click();
     }
 }
