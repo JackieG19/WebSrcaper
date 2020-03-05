@@ -43,11 +43,50 @@ namespace YahooScraper
 
             var stock = driver.FindElementsByXPath("//*[@id='pf-detail-table']/div[1]/table/tbody");
 
-            var row = driver.FindElementByXPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[1]").Text;
+            //var row = driver.FindElementByXPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[1]").Text;
+
+            //List<string> rowTable = new List<string>();
+            //return rowTable;
+            //Console.WriteLine(row);
+            
+            //List <IWebElement> list = driver.FindElements(By.TagName("tr"));
+            IReadOnlyCollection<IWebElement> list = driver.FindElements(By.TagName("tr"));
+            int count = list.Count();
+            //Console.WriteLine(count);
 
             List<string> rowTable = new List<string>();
+
+            for (int i = 1; i <= count; i++)
+            {
+                //Console.WriteLine(i);
+                var symbol = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[1]")).Text;
+                Console.WriteLine(symbol);
+
+                var lastPrice = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[2]")).Text;
+                Console.WriteLine(lastPrice);
+
+                var Change = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[3]")).Text;
+                Console.WriteLine(Change);
+
+                var chgPercent = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[4]")).Text;
+                Console.WriteLine(chgPercent);
+
+                var currency = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[5]")).Text;
+                Console.WriteLine(currency);
+
+                var MarketTime = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[6]")).Text;
+                Console.WriteLine(MarketTime);
+
+                var volume = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[7]")).Text;
+                Console.WriteLine(volume);
+
+                var avgVolume = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[9]")).Text;
+                Console.WriteLine(avgVolume);
+
+                var MarketCap = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[13]")).Text;
+                Console.WriteLine(MarketCap);
+            }
             return rowTable;
-            Console.WriteLine(row);
         }
     }
 }
