@@ -13,11 +13,6 @@ namespace YahooScraper
             options.AddArguments("--disable-gpu");
             var driver = new ChromeDriver(@"/Users/JackieMac/Projects/YahooScraper/YahooScraper/bin", options);
             driver.Navigate().GoToUrl("https://www.yahoo.com/");
-        
-           var options = new ChromeOptions();
-            options.AddArguments("--disable-gpu");
-            var driver = new ChromeDriver(@"/Users/JackieMac/Projects/YahooScraper/YahooScraper/bin", options);
-            driver.Navigate().GoToUrl("https://www.yahoo.com/");
             
             driver.FindElement(By.Id("header-signin-link")).Click();
 
@@ -35,3 +30,4 @@ namespace YahooScraper
         }
     }
 }
+
