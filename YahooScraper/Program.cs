@@ -24,6 +24,7 @@ namespace YahooScraper
 
             var pass = driver.FindElement(By.Id("login-passwd"));
             pass.SendKeys("throw-away-password");
+
             pass.SendKeys(Keys.Enter);
             
             driver.Navigate().GoToUrl("https://finance.yahoo.com/portfolios");
@@ -39,3 +40,4 @@ namespace YahooScraper
         }
     }
 }
+
