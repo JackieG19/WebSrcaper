@@ -24,9 +24,18 @@ namespace YahooScraper
 
             var pass = driver.FindElement(By.Id("login-passwd"));
             pass.SendKeys("throw-away-password");
-            pass.Submit();
+            //pass.Submit();
             
-            // need to close 2nd tab pop-up
+            // able to close second tab but pops back up after password submited
+            //var tabs = driver.WindowHandles;
+            //if (tabs.Count > 1)
+            //{
+            //    driver.SwitchTo().Window(tabs[1]);
+            //    driver.Close();
+            //    driver.SwitchTo().Window(tabs[0]);
+            //}
+            //pass.Submit();
+            pass.SendKeys(Keys.Enter); // success!!!
         }
     }
 }
