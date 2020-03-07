@@ -36,6 +36,7 @@ namespace YahooScraper
 
             var watchList = driver.FindElementByXPath("//*[@id='Col1-0-Portfolios-Proxy']/main/table/tbody/tr[1]/td[1]/div[2]/a");
             watchList.Click();
+
             driver.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
 
             var stock = driver.FindElementsByXPath("//*[@id='pf-detail-table']/div[1]/table/tbody");
@@ -49,3 +50,4 @@ namespace YahooScraper
         }
     }
 }
+
