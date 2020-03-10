@@ -43,12 +43,11 @@ namespace YahooScraper
 
             var stock = driver.FindElementsByXPath("//*[@id='pf-detail-table']/div[1]/table/tbody");
 
-            List<string> financestocks = new List<string>();
-            foreach (var stocks in stock)
-            {
-               financestocks.Add(stocks.Text);
-            }
-            return financestocks;
+            var row = driver.FindElementByXPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[1]").Text;
+
+            List<string> rowTable = new List<string>();
+            return rowTable;
+            Console.WriteLine(row);
         }
     }
 }
