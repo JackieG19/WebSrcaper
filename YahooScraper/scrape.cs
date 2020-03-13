@@ -43,50 +43,55 @@ namespace YahooScraper
 
             var stock = driver.FindElementsByXPath("//*[@id='pf-detail-table']/div[1]/table/tbody");
 
-            //var row = driver.FindElementByXPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[1]").Text;
-
-            //List<string> rowTable = new List<string>();
-            //return rowTable;
-            //Console.WriteLine(row);
-            
-            //List <IWebElement> list = driver.FindElements(By.TagName("tr"));
             IReadOnlyCollection<IWebElement> list = driver.FindElements(By.TagName("tr"));
             int count = list.Count();
-            //Console.WriteLine(count);
 
-            List<string> rowTable = new List<string>();
+            List<string> Stocks = new List<string>();
 
             for (int i = 1; i <= count; i++)
             {
-                //Console.WriteLine(i);
                 var symbol = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[1]")).Text;
+                var lastPrice = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[2]")).Text;
+                var Change = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[3]")).Text;
+                var chgPercent = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[4]")).Text;
+                var currency = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[5]")).Text;
+                var MarketTime = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[6]")).Text;
+                var volume = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[7]")).Text;
+                var avgVolume = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[9]")).Text;
+                var MarketCap = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[13]")).Text;
+                
+                Stock stock = new Stock();
+
+                stock.symbol = symbol;
                 Console.WriteLine(symbol);
 
-                var lastPrice = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[2]")).Text;
+                stock.lastPrice = lastPrice;
                 Console.WriteLine(lastPrice);
 
-                var Change = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[3]")).Text;
+                stock.Change = Change;
                 Console.WriteLine(Change);
 
-                var chgPercent = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[4]")).Text;
+                stock.chgPercent = chgPercent;
                 Console.WriteLine(chgPercent);
 
-                var currency = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[5]")).Text;
+                stock.currency = currency;
                 Console.WriteLine(currency);
 
-                var MarketTime = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[6]")).Text;
+                stock.MarketTime = MarketTime;
                 Console.WriteLine(MarketTime);
 
-                var volume = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[7]")).Text;
+                stock.volume = volume;
                 Console.WriteLine(volume);
 
-                var avgVolume = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[9]")).Text;
+                stock.avgVolume = avgVolume;
                 Console.WriteLine(avgVolume);
 
-                var MarketCap = driver.FindElement(By.XPath("//*[@id='pf-detail-table']/div[1]/table/tbody/tr[" + i + "]/td[13]")).Text;
+                stock.MarketCap = MarketCap;
                 Console.WriteLine(MarketCap);
+
+                Stocks.Add(stock.ToString());
             }
-            return rowTable;
+            return Stocks;
         }
     }
 }
